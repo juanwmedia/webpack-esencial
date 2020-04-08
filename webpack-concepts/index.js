@@ -7,3 +7,5 @@ import test2 from "./test2";
 import blackcat from "./black-cat.jpg";
 const img = document.createElement("img");
 img.src = blackcat;
+
+document.body.appendChild(img);
