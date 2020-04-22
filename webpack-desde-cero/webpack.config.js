@@ -5,8 +5,18 @@ module.exports = (env, argv) => {
   return {
     entry: "./src/js/main.js",
     output: {
-      filename: "bundle.js",
+      filename: "[name].[contentHash].bundle.js",
       path: path.resolve(__dirname, "dist"),
+    },
+    resolve: {
+      alias: {
+        'vue$': 'vue/dist/vue.esm.js'
+      }
+    },
+    optimization: {
+      splitChunks: {
+        chunks: "all",
+      },
     },
     module: {
       rules: [

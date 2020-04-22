@@ -1,4 +1,5 @@
 import CSS from "../css/main.css";
+import Vue from "vue";
 
 Vue.component("cat-image", {
   props: {
