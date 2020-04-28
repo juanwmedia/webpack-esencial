@@ -32,7 +32,7 @@ h1 {
 main {
   padding: 0.5rem;
   min-height: 100vh;
-  background-color: gray;
+  background-color: goldenrod;
   display: grid;
   grid-gap: 0.5rem;
   grid:

@@ -5,7 +5,7 @@ module.exports = (env, argv) => {
   return {
     entry: "./src/js/main.js",
     output: {
-      filename: "[name].[contentHash].bundle.js",
+      filename: "[name].[hash].bundle.js",
       path: path.resolve(__dirname, "dist"),
     },
     resolve: {
@@ -18,6 +18,11 @@ module.exports = (env, argv) => {
         chunks: "all",
       },
     },
+    mode: 'development',
+    devServer: {
+      contentBase: './dist',
+      hot: true
+    },
     module: {
       rules: [
         {
@@ -29,7 +34,14 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.css$/,
-          use: [MiniCSSExtractPlugin.loader, "css-loader"]
+          use: [{
+            loader: MiniCSSExtractPlugin.loader,
+            options: {
+              hmr: true,
+              reloadAll: true,
+            },
+          }, "css-loader"]
+          //use: [MiniCSSExtractPlugin.loader, "css-loader"]
           //use: ["style-loader", "css-loader"]
         },
         {

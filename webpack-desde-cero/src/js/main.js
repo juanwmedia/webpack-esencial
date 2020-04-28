@@ -39,3 +39,9 @@ new Vue({
     }
   }
 });
+
+console.log("Hi from JS!")
+
+if (module.hot) {
+  module.hot.accept();
+}
