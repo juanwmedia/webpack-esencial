@@ -3,6 +3,7 @@ const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = (env, argv) => {
+  const isDevelopment = argv.mode === "development";
   return {
     entry: "./src/js/main.js",
     output: {
@@ -19,7 +20,8 @@ module.exports = (env, argv) => {
         chunks: "all",
       },
     },
-    mode: 'development',
+    mode: argv.mode,
+    devtool: isDevelopment ? "cheap-source-map" : "source-map",
     devServer: {
       contentBase: './dist',
       hot: true
