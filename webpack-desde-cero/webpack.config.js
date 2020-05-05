@@ -1,6 +1,7 @@
 const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = (env, argv) => {
   return {
     entry: "./src/js/main.js",
@@ -51,6 +52,7 @@ module.exports = (env, argv) => {
       ]
     },
     plugins: [
+      new CleanWebpackPlugin(),
       new MiniCSSExtractPlugin(),
       new HTMLWebpackPlugin({
         title: "Webpack desde cero",
