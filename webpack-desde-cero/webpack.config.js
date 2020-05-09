@@ -2,6 +2,7 @@ const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode === "development";
   return {
@@ -36,14 +37,12 @@ module.exports = (env, argv) => {
           }
         },
         {
+          test: /\.vue$/,
+          loader: "vue-loader",
+        },
+        {
           test: /\.css$/,
-          use: [{
-            loader: MiniCSSExtractPlugin.loader,
-            options: {
-              hmr: true,
-              reloadAll: true,
-            },
-          }, "css-loader"]
+          use: [isDevelopment ? "vue-style-loader" : MiniCSSExtractPlugin.loader, "css-loader"]
           //use: [MiniCSSExtractPlugin.loader, "css-loader"]
           //use: ["style-loader", "css-loader"]
         },
@@ -54,6 +53,7 @@ module.exports = (env, argv) => {
       ]
     },
     plugins: [
+      new VueLoaderPlugin(),
       new CleanWebpackPlugin(),
       new MiniCSSExtractPlugin(),
       new HTMLWebpackPlugin({
