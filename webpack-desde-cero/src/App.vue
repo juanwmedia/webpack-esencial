@@ -34,7 +34,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 /* General */
 * {
   box-sizing: border-box;
@@ -69,7 +69,7 @@ h1 {
 main {
   padding: 0.5rem;
   min-height: 100vh;
-  background-color: gray;
+  background-color: $corporate;
   display: grid;
   grid-gap: 0.5rem;
   grid:
