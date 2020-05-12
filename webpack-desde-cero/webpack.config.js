@@ -16,11 +16,11 @@ module.exports = (env, argv) => {
         vue$: "vue/dist/vue.esm.js",
       },
     },
-    optimization: {
-      splitChunks: {
-        chunks: "all",
-      },
-    },
+    // optimization: {
+    //   splitChunks: {
+    //     chunks: "all",
+    //   },
+    // },
     mode: argv.mode,
     devtool: isDevelopment ? "cheap-source-map" : "source-map",
     devServer: {
@@ -48,7 +48,7 @@ module.exports = (env, argv) => {
             {
               loader: "sass-loader",
               options: {
-                prependData: `@import "./css/global.scss";`,
+                prependData:`@import "${path.resolve(__dirname, 'src/css/global.scss')}";`,
               },
             },
           ],

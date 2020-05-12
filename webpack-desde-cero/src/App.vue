@@ -1,5 +1,7 @@
 <template>
   <main>
+    <AppOptin v-if="showOptin"/>
+    <a href="#" @click.prevent="showOptin = !showOptin">Join to our news</a>
     <a @click="getCat" href="#">Cat's please 🙀</a>
     <cat-image v-for="(image, $index) in catImages" :url="image" :key="$index">
     </cat-image>
@@ -7,12 +9,13 @@
 </template>
 
 <script>
-import CatImage from './components/CatImage.vue';
+// import CatImage from './components/CatImage.vue';
 export default {
   name: "App",
   data() {
       return {
-          catImages: ["https://cdn2.thecatapi.com/images/bun.jpg"]
+          catImages: [],
+          showOptin: false,
       }
   },
   methods: {
@@ -29,7 +32,8 @@ export default {
     }
   },
   components: {
-      CatImage
+      CatImage: () => import(/* webpackChunkName: "CatImage" , webpackPrefetch: true */ './components/CatImage.vue'),
+      AppOptin: () => import(/* webpackChunkName: "AppOptin" */ './components/AppOptin.vue'),
   }
 };
 </script>
