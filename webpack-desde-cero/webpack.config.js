@@ -17,6 +17,7 @@ module.exports = (env, argv) => {
       },
     },
     optimization: {
+      usedExports: true,
       runtimeChunk: 'single',
       splitChunks: {
         maxSize: 10000,

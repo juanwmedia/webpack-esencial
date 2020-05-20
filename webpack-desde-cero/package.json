@@ -1,10 +1,12 @@
 {
   "name": "webpack-desde-cero",
+  "sideEffects": false,
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "build": "webpack",
+    "build:dev": "webpack --mode=development",
     "serve": "webpack-dev-server --open --mode=development"
   },
   "keywords": [],
