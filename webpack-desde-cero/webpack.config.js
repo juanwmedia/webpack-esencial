@@ -18,9 +18,8 @@ module.exports = (env, argv) => {
     },
     optimization: {
       usedExports: true,
-      runtimeChunk: 'single',
+      runtimeChunk: "single",
       splitChunks: {
-        maxSize: 10000,
         cacheGroups: {
           vendor: {
             test: /[\\/]node_modules[\\/]/,
@@ -35,9 +34,20 @@ module.exports = (env, argv) => {
     devServer: {
       contentBase: "./dist",
       hot: true,
+      clientLogLevel: "info",
+      overlay: {
+        warnings: true,
+        errors: true,
+      },
     },
     module: {
       rules: [
+        {
+          test: /\.(js|vue)$/,
+          exclude: /node_modules/,
+          use: "eslint-loader",
+          enforce: "pre",
+        },
         {
           test: /\.js$/,
           exclude: /node_modules/,
@@ -51,13 +61,17 @@ module.exports = (env, argv) => {
         },
         {
           test: /\.scss$/,
+          sideEffects: true,
           use: [
             isDevelopment ? "vue-style-loader" : MiniCSSExtractPlugin.loader,
             "css-loader",
             {
               loader: "sass-loader",
               options: {
-                prependData:`@import "${path.resolve(__dirname, 'src/css/global.scss')}";`,
+                prependData: `@import "${path.resolve(
+                  __dirname,
+                  "src/css/global.scss"
+                )}";`,
               },
             },
           ],
@@ -72,7 +86,7 @@ module.exports = (env, argv) => {
       new VueLoaderPlugin(),
       new CleanWebpackPlugin(),
       new MiniCSSExtractPlugin({
-        filename: "[name].[contenthash].css"
+        filename: "[name].[contenthash].css",
       }),
       new HTMLWebpackPlugin({
         title: "Webpack desde cero",

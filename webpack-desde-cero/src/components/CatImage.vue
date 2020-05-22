@@ -1,5 +1,5 @@
 <template>
-  <div :style="backgroundImage"></div>
+  <div :style="backgroundImage" />
 </template>
 
 <script>

@@ -2,8 +2,14 @@
   <div class="optin">
     <form>
       <label for="email">Email</label>
-      <input type="email" id="email" />
-      <input type="submit" value="Send" />
+      <input
+        id="email"
+        type="email"
+      >
+      <input
+        type="submit"
+        value="Send"
+      >
     </form>
   </div>
 </template>
