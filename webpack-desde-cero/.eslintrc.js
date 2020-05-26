@@ -10,6 +10,8 @@ module.exports = {
     "eslint:recommended",
   ],
   rules: {
-      'no-unused-vars': 0
+      'no-unused-vars': 0,
+      'no-undef': 0,
+      'vue/component-tags-order': 0,
   }
 };
